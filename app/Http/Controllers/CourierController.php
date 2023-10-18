@@ -58,14 +58,15 @@ class CourierController extends Controller
             'release_date' => 'required|date',
         ]);
 
+        $oldName = $courier->name;
+
         $courier->update($request->all());
         $user = auth()->user()->name;
 
-        $log_entry = $user . " updated the courier  \"" . $courier->name . "\" with the ID #" . $courier->id;
+        $log_entry = $user . " updated the courier from \"" . $oldName . "\" to \"" . $courier->name . "\" with the ID #" . $courier->id;
         event(new UserLog($log_entry));
 
-        return redirect()->route('courier.index')->with('success', 'Courier deleted successfully.');
-
+        return redirect()->route('courier.index')->with('success', 'Courier edited successfully.');
 
     }
 

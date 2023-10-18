@@ -3,7 +3,7 @@
 @section('content')
 <div class="container mt-5">
     <div class="d-flex justify-content-between align-items-center mb-4">
-        <h1>Add a Courier</h1>
+        <h1 class="fw-bold">Add a Courier</h1>
         <a href="{{ route('dashboard') }}" class="btn btn-secondary">Back to All Couriers</a>
     </div>
 

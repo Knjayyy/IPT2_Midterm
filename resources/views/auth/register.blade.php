@@ -1,50 +1,60 @@
 @extends('base')
 
 @section('content')
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-header text-center">
+                        <h1>Registration Page</h1>
+                    </div>
+                    <div class="card-body">
+                        <form action="{{ url('/register') }}" method="POST">
+                            {{ csrf_field() }}
 
-<div class="container col-md-6 offset-md-3 mt-5">
-    <h1 class="text-center"> Registration Page</h1>
-    <form action="{{'/register'}}" method="POST">
-    {{csrf_field()}}
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror" required>
+                                @error('name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
 
-    <div class="form-group mb-3">
-        <label for="name">Name</label>
-        <input type="text" name="name" id="name" class="form-control">
-    </div>
-    @error('name')
-    <p class="text-danger">{{$message}}</p>
-    @enderror
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" name="email" id="email" class="form-control @error('email') is-invalid @enderror" required>
+                                @error('email')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
 
-    <div class="form-group mb-3">
-        <label for="email">Email</label>
-        <input type="email" name="email" id="email" class="form-control">
-    </div>
-    @error('email')
-    <p class="text-danger">{{$message}}</p>
-    @enderror
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <input type="password" name="password" id="password" class="form-control @error('password') is-invalid @enderror" required>
+                                @error('password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
 
-    <div class="form-group mb-3">
-        <label for="password">Password</label>
-        <input type="password" name="password" id="password" class="form-control">
-    </div>
-    @error('password')
-    <p class="text-danger">{{$message}}</p>
-    @enderror
+                            <div class="form-group">
+                                <label for="password_confirmation">Confirm Password</label>
+                                <input type="password" name="password_confirmation" id="password_confirmation" class="form-control" required>
+                            </div>
 
-    <div class="form-group mb-3">
-        <label for="password_confirmation">Password^</label>
-        <input type="password" name="password_confirmation" id="password_confirmation" class="form-control">
-    </div>
-    @error('password')
-    <p class="text-danger">{{$message}}</p>
-    @enderror
-
-    <div class="d-flex">
-        <div class="flex-grow-1">
-            <a href="{{'/'}}">Already have an account</a>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <a href="{{ url('/') }}">Already have an account</a>
+                                <button type="submit" class="btn btn-primary mt-4">Register</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
-        <button class="btn btn-primary px-5">Register</button>
     </div>
-</form>
-</div>
 @endsection

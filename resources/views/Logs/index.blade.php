@@ -4,23 +4,23 @@
 
 <div class="container mt-5">
     <div class="row">
-        <div class="col-lg-12 margin-tb">
-            <div class="pull-left">
-                <h2>Logs</h2>
+        <div class="col-lg-12">
+            <div class="text-center">
+                <h1 class="display-4">System Logs</h1>
             </div>
         </div>
     </div>
 
     <div class="card mt-3">
-        <div class="card-header bg-primary text-white">
+        <div class="card-header bg-info text-white">
             <strong>System Logs</strong>
         </div>
         <div class="card-body">
             <div class="table-responsive">
-                <table class="table table-striped table-hover">
-                    <thead>
+                <table class="table table-bordered table-striped">
+                    <thead class="thead-dark">
                         <tr>
-                            <th scope="col">ID</th>
+                            <th scope="col">#</th>
                             <th scope="col">Log Entry</th>
                             <th scope="col">Timestamp</th>
                         </tr>

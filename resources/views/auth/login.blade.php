@@ -1,42 +1,48 @@
 @extends('base')
 
 @section('content')
-    <div class="container col-md-6 offset-md-3 mt-5">
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                @if(session('message'))
+                    <div class="alert alert-success">{{ session('message') }}</div>
+                @endif
 
-    @if(session('message'))
-        <div class="alert alert-success">{{ session('message') }}</div>
-    @endif
+                @if(session('error'))
+                    <div class="alert alert-danger">{{ session('error') }}</div>
+                @endif
 
-    @if(session('error'))
-        <div class="alert alert-danger">{{ session('error') }}</div>
-    @endif
+                <div class="card">
+                    <div class="card-header text-center">
+                        <h1>Login Page</h1>
+                    </div>
+                    <div class="card-body">
+                        <form action="{{ url('/login') }}" method="POST">
+                            {{ csrf_field() }}
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" name="email" id="email" class="form-control @error('email') is-invalid @enderror" required>
+                                @error('email')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
 
-    <h1 class="text-center"> Login Page</h1>
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <input type="password" name="password" id="password" class="form-control" required>
+                            </div>
 
-        <form action="{{ '/login' }}" method="POST">
-            {{ csrf_field() }}
-
-            <div class="form-group mb-3 text-secondary">
-                <label for="email">Email</label>
-                <input type="email" name="email" id="email" class="form-control">
-                @error('email')
-                    <p class="text-danger"> {{ $message }}</p>
-                @enderror
-            </div>
-
-            <div class="form-group mb-3 text-secondary">
-                <label for="password">Password</label>
-                <input type="password" name="password" id="password" class="form-control">
-            </div>
-
-            <div class="d-flex">
-                <div class="flex-grow-1">
-                    <a href="{{ '/register' }}">Sign up</a>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <a href="{{ url('/register') }}">Sign up</a>
+                                <button type="submit" class="btn btn-primary m-4">Login</button>
+                            </div>
+                            @method('POST')
+                        </form>
+                    </div>
                 </div>
-                <button class="btn btn-primary px-5" type="submit">Login</button>
             </div>
-
-            @method('POST')
-        </form>
+        </div>
     </div>
 @endsection
